@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Short-Url</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00C8FF;
+  border-right: none;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+  font-size: 25px;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  width: 60px;
+  height: 56px;
+  border: 1px solid #00C8FF;
+  background: #00C8FF;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.searchButton0 {
+  width: 60px;
+  height: 56px;
+  border: 1px solid #00C8FF;
+  background: #00C8FF;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 22%;
+}
+</style>
+
+</head>
+<body translate="no">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <img src="{{ url_for('static', path='/done.png') }}" alt="Let's compress your URLs" class="center">
+<div class="wrap">
+
+   <div class="search">
+      <button type="submit" class="searchButton0" onclick="copyUrl()">
+        <i class="fa fa-clone"></i>
+     </button>
+      <input type="url" name="url" id="url" class="searchTerm" value="{{ short_url }}" pattern="https?://.*" size="300">
+     <button type="submit" class="searchButton" onclick="location.href='{{ short_url }}';">
+        <i class="fa fa fa-play"></i>
+     </button>
+   </div>
+</div>
+
+<script>
+function copyUrl() {
+  // Get the text field
+  var copyText = document.getElementById("url");
+
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  // Alert the copied text
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+</body>
+</html>
